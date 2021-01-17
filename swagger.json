@@ -30,7 +30,7 @@
                 "in": "body",
                 "description": "User we are logging in",
                 "schema": {
-                  "$ref": "#/definitions/User"
+                  "$ref": "#/models/User"
                 }
               }
             ],
@@ -39,9 +39,9 @@
             ],
             "responses": {
               "200": {
-                "description": "New user is created",
+                "description": "Logging in a user",
                 "schema": {
-                  "$ref": "#/definitions/User"
+                  "$ref": "#/models/User"
                 }
               }
             }
