@@ -38,3 +38,16 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+/*
+// socket.io setup
+io.on('connection', (socket) => {
+  // Joins the given socket to the given room
+  socket.on('join-room', (room) => {
+      console.log('User joining room: ' + room);
+      socket.join(room);
+      // To check whos in the room: 
+      // console.log(io.sockets.adapter.rooms[room]);
+  });
+});
+*/

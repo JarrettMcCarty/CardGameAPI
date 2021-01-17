@@ -4,7 +4,7 @@ module.exports = mongoose => {
       username: {type: String, unique: true},
       passwordHash: String,
       salt: String,
-      avatar: BigInt64Array,
+      avatar: String,
     },
     { timestamps: true }
   );

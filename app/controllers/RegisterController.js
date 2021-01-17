@@ -2,7 +2,7 @@ const db = require("../models");
 const User = db.user;
 const Utils = require('../../utility.js');
 
-exports.post = (req, res) => {
+exports.post = async (req, res) => {
     if (req.body['username'] == undefined ||  req.body['password'] == undefined) {
         res.json({
           "status": "error",
