@@ -7,6 +7,8 @@ const app = express();
 var corsOptions = {
   origin: "http://localhost:8081"
 };
+var swaggerUi = require('swagger-ui-express'),
+    swaggerDocument = require('./swagger.json');
 
 app.use(cors(corsOptions));
 
@@ -15,6 +17,8 @@ app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const db = require("./app/models");
 db.mongoose
@@ -30,10 +34,7 @@ db.mongoose
     process.exit();
   });
 
-  app.get("/", (req, res) => {
-    res.json({ message: "Landing for CardGameAPI" });
-  });
-  
+
 require("./app/routes/routes")(app);
 
 // set port, listen for requests
