@@ -30,7 +30,10 @@ db.mongoose
     process.exit();
   });
 
-
+  app.get("/", (req, res) => {
+    res.json({ message: "Landing for CardGameAPI" });
+  });
+  
 require("./app/routes/routes")(app);
 
 // set port, listen for requests
