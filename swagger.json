@@ -30,7 +30,7 @@
                 "in": "body",
                 "description": "User we are logging in",
                 "schema": {
-                  "$ref": "#/models/User"
+                  "$ref": "#/definitions/User"
                 }
               }
             ],
@@ -41,11 +41,34 @@
               "200": {
                 "description": "Logging in a user",
                 "schema": {
-                  "$ref": "#/models/User"
+                  "$ref": "#/definitions/User"
                 }
               }
             }
           }
       }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "username",
+        "_id"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "avatar": {
+            "type": "string"
+        }
+      }
+    }
   }
 }
