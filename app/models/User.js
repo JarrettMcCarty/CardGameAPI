@@ -1,10 +1,12 @@
+const { Binary } = require("bson");
+
 module.exports = mongoose => {
   const UserSchema = mongoose.Schema(
     {
       username: {type: String, unique: true},
       passwordHash: String,
       salt: String,
-      avatar: String,
+      avatar: Binary,
     },
     { timestamps: true }
   );

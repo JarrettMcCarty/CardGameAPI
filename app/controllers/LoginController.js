@@ -4,7 +4,7 @@ const Utils = require('../../utility.js');
 
 // 
 exports.post = async (req, res) => {
-  if (req.body['username'] == undefined || req.body['password'] == undefined) {
+  if (req.body['Username'] == undefined || req.body['Password'] == undefined) {
     res.json({
       "status": "error",
       "details": "Missing required fields"
@@ -12,8 +12,8 @@ exports.post = async (req, res) => {
     return; 
   }
 
-  const username = req.body['username'].toLowerCase();
-  const password = req.body['password'];
+  const username = req.body['Username'].toLowerCase();
+  const password = req.body['Password'];
   const user = await User.findOne({ username: username }).exec();
   if (!user) {
     res.json({
