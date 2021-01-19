@@ -4,27 +4,27 @@ const Utils = require('../../utility.js');
 
 // 
 exports.post = async (req, res) => {
-  if (req.body['Username'] == undefined || req.body['Password'] == undefined) {
-    res.json({
+  if (req.body['username'] == undefined || req.body['password'] == undefined) {
+    res.status(400).json({
       "status": "error",
       "details": "Missing required fields"
     });
     return; 
   }
 
-  const username = req.body['Username'].toLowerCase();
-  const password = req.body['Password'];
+  const username = req.body['username'].toLowerCase();
+  const password = req.body['password'];
   const user = await User.findOne({ username: username }).exec();
   if (!user) {
-    res.json({
+    res.status(400).json({
       "status": "error",
       "details": "Invalid username"
     });
     return; 
   }
 
-  if (Utils.hashPassword(password, user.salt) != user.passHash) {
-    res.json({
+  if (Utils.hashPassword(password, user.salt) != user.passwordHash) {
+    res.status(400).json({
       "status": "error",
       "details": "Invalid password"
     });
@@ -32,9 +32,12 @@ exports.post = async (req, res) => {
   }
   else {
     res.json({
-      "status": "success", 
       "username": user.username,
-      "avatar": user.avatar
+      "avatar": user.avatar,
+      "background": user.background,
+      "drawmode": user.drawmode,
+      "difficulty": user.difficulty,
+      "deck": user.deck
     })
   }
 };

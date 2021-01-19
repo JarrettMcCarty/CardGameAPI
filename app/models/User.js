@@ -1,3 +1,4 @@
+const { Int32 } = require("bson");
 const { Binary } = require("bson");
 
 module.exports = mongoose => {
@@ -7,6 +8,10 @@ module.exports = mongoose => {
       passwordHash: String,
       salt: String,
       avatar: String,
+      background: String,
+      drawmode: Number,
+      difficulty: Number,
+      deck: String
     },
     { timestamps: true }
   );

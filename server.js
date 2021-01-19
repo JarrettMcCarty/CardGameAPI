@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const db = require("./app/models");
 db.mongoose
@@ -36,6 +36,13 @@ db.mongoose
 
 
 require("./app/routes/routes")(app);
+
+app.use((err, req, res, next) => {
+  res.locals.error = err;
+  const status = err.status || 500;
+  res.status(status);
+  res.render('error');
+});
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

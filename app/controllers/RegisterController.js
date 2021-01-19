@@ -4,7 +4,7 @@ const Utils = require('../../utility.js');
 
 exports.post = async (req, res) => {
     if (req.body['username'] == undefined ||  req.body['password'] == undefined) {
-        res.json({
+        res.status(400).json({
           "status": "error",
           "details": "Missing required fields."
         });
@@ -13,10 +13,15 @@ exports.post = async (req, res) => {
     
       const username = req.body['username'].toLowerCase();
       const password = req.body['password'];
-    
+      const avatar = req.body['avatar'];
+      const background = req.body['background'];
+      const deck = req.body['deck'];
+      const drawmode = req.body['drawmode'];
+      const difficulty = req.body['difficulty'];
+
       const user = await User.findOne({ username: username });
       if (user) {
-        res.json({
+        res.status(400).json({
           "status": "error",
           "details": "That username is already taken."
         });
@@ -27,15 +32,20 @@ exports.post = async (req, res) => {
     
       let newUser = new User({
         username: username,
-        passHash: Utils.hashPassword(password, salt),
-        salt: salt
+        passwordHash: Utils.hashPassword(password, salt),
+        salt: salt,
+        avatar: avatar,
+        background: background,
+        deck: deck,
+        drawmode: drawmode,
+        difficulty: difficulty
       });
       newUser.save().then(item => {
         res.json({"status": "success"});
       }).catch(err => {
         console.log('\nDatabase ERROR - ' + new Date(Date.now()).toLocaleString())
         console.log(err)
-        res.json({
+        res.status(500).json({
           "status": "error",
           "details": "There was an error saving to the database."
         });
