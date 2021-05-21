@@ -7,5 +7,9 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.user = require("./User.js")(mongoose);
+db.game  = require("./Game.js")(mongoose);
+db.player  = require("./Player.js")(mongoose);
+db.team  = require("./Team.js")(mongoose);
+db.lobby = require("./Lobby.js")(mongoose);
 
 module.exports = db;

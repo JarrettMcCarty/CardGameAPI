@@ -46,6 +46,35 @@
               }
             }
           }
+      },
+      "/register": {
+        "post": {
+            "tags": [
+              "Users"
+            ],
+            "description": "Register a use to the system",
+            "parameters": [
+              {
+                "name": "user",
+                "in": "body",
+                "description": "User we are registering",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            ],
+            "produces": [
+              "application/json"
+            ],
+            "responses": {
+              "200": {
+                "description": "Registering a user",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
       }
   },
   "definitions": {
@@ -63,10 +92,25 @@
           "type": "string",
           "uniqueItems": true
         },
-        "password": {
+        "passwordHash": {
           "type": "string"
         },
+        "salt": {
+            "type": "string"
+          },
         "avatar": {
+            "type": "string"
+        },
+        "background": {
+            "type": "string"
+        },
+        "drawmode": {
+            "type": "number"
+        },
+        "difficulty": {
+            "type": "number"
+        },
+        "deck": {
             "type": "string"
         }
       }

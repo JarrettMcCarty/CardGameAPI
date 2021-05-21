@@ -9,8 +9,6 @@ module.exports = mongoose => {
       salt: String,
       avatar: String,
       background: String,
-      drawmode: Number,
-      difficulty: Number,
       deck: String
     },
     { timestamps: true }

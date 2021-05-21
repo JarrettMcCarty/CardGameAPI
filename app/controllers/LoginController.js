@@ -35,8 +35,6 @@ exports.post = async (req, res) => {
       "username": user.username,
       "avatar": user.avatar,
       "background": user.background,
-      "drawmode": user.drawmode,
-      "difficulty": user.difficulty,
       "deck": user.deck
     })
   }

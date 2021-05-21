@@ -36,9 +36,7 @@ exports.post = async (req, res) => {
         salt: salt,
         avatar: avatar,
         background: background,
-        deck: deck,
-        drawmode: drawmode,
-        difficulty: difficulty
+        deck: deck
       });
       newUser.save().then(item => {
         res.json({"status": "success"});
